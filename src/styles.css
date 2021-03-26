@@ -8,8 +8,8 @@
 }
 
 .data-label {
-  display: flex;
-  align-items: center;
+  display: inline-block;
+  /* background-color: #84cceb; */
 }
 
 .data-value {
@@ -35,10 +35,14 @@
   /* background: #84cceb; */
 }
 
+.tooltip-container {
+  position: relative;
+}
+
 .tooltip {
   position: absolute;
   left: 50%;
-  top: 102%;
+  top: 103%;
   transform: translateX(-50%);
   width: 100px;
   background: white;
@@ -49,4 +53,10 @@
   z-index: 1000;
   font-size: 14px;
   color: #1a1a1a;
+}
+
+.tooltip-right {
+  left: 103%;
+  top: -100%;
+  transform: translate(0, 0);
 }
