@@ -1,30 +1,28 @@
 import React from "react";
 import "./styles.css";
 
-function withHover(WrappedComponent) {
-  return class extends React.Component {
-    constructor(props) {
-      super(props);
-      this.state = {
-        hovering: false
-      };
-      this.mouseEnter = this.mouseEnter.bind(this);
-      this.mouseLeave = this.mouseLeave.bind(this);
-    }
-    mouseEnter() {
-      this.setState({ hovering: true });
-    }
-    mouseLeave() {
-      this.setState({ hovering: false });
-    }
-    render() {
-      return (
-        <div onMouseEnter={this.mouseEnter} onMouseLeave={this.mouseLeave}>
-          {<WrappedComponent hovering={this.state.hovering} {...this.props} />}
-        </div>
-      );
-    }
-  };
+class HoverProvider extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      hovering: false
+    };
+    this.mouseEnter = this.mouseEnter.bind(this);
+    this.mouseLeave = this.mouseLeave.bind(this);
+  }
+  mouseEnter() {
+    this.setState({ hovering: true });
+  }
+  mouseLeave() {
+    this.setState({ hovering: false });
+  }
+  render() {
+    return (
+      <div onMouseEnter={this.mouseEnter} onMouseLeave={this.mouseLeave}>
+        {this.props.render(this.state.hovering)}
+      </div>
+    );
+  }
 }
 
 function Tooltip({ text, position }) {
@@ -53,7 +51,10 @@ function Summary(props) {
 
 function Chart(props) {
   return (
-    <div className="chart tooltip-container">
+    <div
+      className="chart tooltip-container"
+      style={{ background: props.color }}
+    >
       Chart goes here
       {props.hovering ? (
         <Tooltip text="Chart tooltip" position="bottom" />
@@ -62,14 +63,13 @@ function Chart(props) {
   );
 }
 
-const SummaryWithHover = withHover(Summary);
-const ChartWithHover = withHover(Chart);
-
 export default function App() {
   return (
     <div className="App">
-      <SummaryWithHover />
-      <ChartWithHover />
+      <HoverProvider render={(hovering) => <Summary hovering={hovering} />} />
+      <HoverProvider
+        render={(hovering) => <Chart hovering={hovering} color="#f4f5f9" />}
+      />
     </div>
   );
 }

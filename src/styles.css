@@ -9,7 +9,6 @@
 
 .data-label {
   display: inline-block;
-  /* background-color: #84cceb; */
 }
 
 .data-value {
@@ -18,7 +17,6 @@
 }
 
 .chart {
-  background: #dededf;
   margin-bottom: 24px;
   padding: 24px;
   border-radius: 4px;
@@ -32,7 +30,6 @@
 
 .container {
   position: relative;
-  /* background: #84cceb; */
 }
 
 .tooltip-container {
