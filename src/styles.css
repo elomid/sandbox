@@ -9,6 +9,7 @@
 
 .data-label {
   display: inline-block;
+  align-items: center;
 }
 
 .data-value {
@@ -17,6 +18,7 @@
 }
 
 .chart {
+  margin-bottom: 24px;
   margin-bottom: 24px;
   padding: 24px;
   border-radius: 4px;
@@ -55,5 +57,4 @@
 .tooltip-right {
   left: 103%;
   top: -100%;
-  transform: translate(0, 0);
 }
